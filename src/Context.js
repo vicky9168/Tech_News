@@ -1,12 +1,6 @@
-// context creation
-// provider
-//consumer lengthy remove
-//useContext hook
-//contect api and xuseContect is not a same is a different
 import React, { useReducer,useEffect } from "react";
 import { useContext } from 'react';
 import reducer from "./reducer";
-
 let API = "https://hn.algolia.com/api/v1/search?";
 
 const initialState ={
@@ -19,16 +13,13 @@ const initialState ={
 
 const AppContext =React.createContext();
 
-// to create a provider function and use it globally
-
+// to create a provider function and use it globally.
 
 const AppProvider =({children})=>{
     // const [state ,setState] = useState(initialState);
     const [state ,dispatch] = useReducer(reducer,initialState);
 
-    // let isLoading = true;
-
-    
+    // let isLoading = true;    
     const fetchApiData= async(url) =>{
 
         dispatch({type:"SET_LOADING"});
@@ -52,7 +43,7 @@ const AppProvider =({children})=>{
     const removePost=(post_Id)=>{
         dispatch({type:"REMOVE_POST", payload:post_Id});
     }
-//Search functionalit 
+//Search functionality
 
 const searchPost = (serarchQuery) =>{
     dispatch({ 
@@ -85,7 +76,6 @@ const getPrevPage = ()=>{
 
 
 //Custom hook create
-
 const useGlobalContext = () =>{
     return useContext(AppContext);
 }
